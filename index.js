@@ -39,15 +39,27 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
+ function Person(name, age) {
+   this.name = name;
+   this.age = age;
+   this.stomach = [];    
   }
  
- 
+  Person.prototype.eat = function(somefood) {
+    if (this.stomach.length < 11) {
+    this.stomach.push(somefood);
+    }
+    return this.stomach;
+  }
 
-  
-  
-  
+ Person.prototype.poop = function() {
+  this.stomach = [];
+  return this.stomach;
+ }
+
+  Person.prototype.toString = function() {
+    return `${this.name}, ${this.age}`
+  } 
   
   /*
     TASK 2
@@ -63,11 +75,17 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model, milesPerGallon) {
+   this.model = model;
+   this.milesPerGallon = milesPerGallon;
+   this.tank = 0;
+   this.odometer = 0;       
   }
   
-  
+  Car.prototype.fill = function(gallons) {
+    return this.tank += gallons;
+  }
+
   /*
     TASK 3
       - Write a Baby constructor subclassing Person.
@@ -83,10 +101,10 @@ function Airplane(name) {
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Global Object Binding: if "this" is outside of an object (in the global scope), it refers to the window/console
+    2. Implicit Binding: the object before the dot when a function is used on an object. Inside of myObj.function(), "this" refers to myObj
+    3. New Binding: when a new instance of an object is created, "this" refers to the new instance
+    4. Explicit Binding: "this" is explicitly defined when using the call or apply methods
   */
   
   
