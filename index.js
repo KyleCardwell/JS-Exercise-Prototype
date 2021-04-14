@@ -87,13 +87,16 @@ function Airplane(name) {
   }
 
   Car.prototype.drive = function(distance) {
-    this.tank = this.tank-(distance/this.milesPerGallon)
     this.odometer += distance;
+    this.tank = this.tank-(distance/this.milesPerGallon).toFixed(2)
+    if (this.tank <= 0) {
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
   }
 
-let testCar = new Car("A7",22);
+const testCar = new Car("A7",22);
 testCar.fill(22);
-testCar.drive(22);
+// testCar.drive(485);
 testCar.drive(44);
 console.log(testCar);
 
@@ -108,8 +111,8 @@ console.log(testCar);
    Person.call(this, name, age, favoriteToy)
    this.favoriteToy = favoriteToy;
   }
-
   Baby.prototype = Object.create(Person.prototype);
+  
   Baby.prototype.play = function() {
     return `Playing with ${this.favoriteToy}`
   };
